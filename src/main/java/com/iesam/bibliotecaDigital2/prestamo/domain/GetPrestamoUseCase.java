@@ -9,6 +9,7 @@ public class GetPrestamoUseCase {
     }
 
     public Prestamo execute (Prestamo id){
-        prestamoRespository.getPrestamoId(id)
+      return   prestamoRespository.getPrestamoId(id);
+
     }
 }
