@@ -7,7 +7,7 @@ import com.iesam.bibliotecaDigital2.usuario.domain.*;
 import java.util.List;
 import java.util.Scanner;
 
-public class main {
+public class UsuarioPresentation {
     static Scanner input = new Scanner(System.in);
 
     public static void menuUsuario(){

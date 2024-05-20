@@ -1,8 +1,10 @@
 package com.iesam.bibliotecaDigital2.prestamo.presentation;
 
-import com.iesam.bibliotecaDigital2.libro.domain.Libro;
+import com.iesam.bibliotecaDigital2.libro.data.LibroDataRepository;
+import com.iesam.bibliotecaDigital2.libro.data.Local.LibroFileLocalDataSource;
+import com.iesam.bibliotecaDigital2.libro.domain.GetLibroUseCase;
 import com.iesam.bibliotecaDigital2.usuario.domain.Usuario;
-import com.iesam.bibliotecaDigital2.usuario.presentation.main;
+import com.iesam.bibliotecaDigital2.usuario.presentation.UsuarioPresentation;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -43,8 +45,9 @@ public class PrestamoPresentation {
     }
     public static void save(){
         System.out.println("introduce los datos del usuario");
-        Usuario usuario = main.obtainUsuario();
+        Usuario usuario = UsuarioPresentation.obtainUsuario();
         System.out.println("introduce los datos del libro");
-        Libro libro.
+        String id = input.next();
+        GetLibroUseCase getLibroUseCase = new GetLibroUseCase(new LibroDataRepository(new LibroFileLocalDataSource()));
     }
 }

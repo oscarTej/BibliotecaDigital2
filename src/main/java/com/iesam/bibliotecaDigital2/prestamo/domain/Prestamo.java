@@ -5,32 +5,36 @@ import com.iesam.bibliotecaDigital2.usuario.domain.Usuario;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Prestamo {
     public String id;
-    public int fechaDevolucion;
-    public int fechaPrestamo;
+    public Date fechaDevolucion;
+    public Date fechaPrestamo;
     public String estadoDelPrestamo;
 
     public Usuario usuario;
     public Libro libro;
 
-    public Prestamo(String id, int fechaDevolucion, int fechaPrestamo, String estadoDelPrestamo, Usuario usuario, Libro libro) {
+    public Prestamo(String id, Date fechaDevolucion, Date fechaPrestamo, String estadoDelPrestamo, Usuario usuario, Libro libro) {
         this.id = id;
-        this.fechaDevolucion =this.fechaPrestamo +30;
+        this.fechaDevolucion =calcularFechaDeDevolucion(fechaPrestamo);
         this.fechaPrestamo = fechaPrestamo;
         this.estadoDelPrestamo = estadoDelPrestamo;
         this.usuario = usuario;
         this.libro = libro;
     }
+    private Date calcularFechaDeDevolucion(Date fechaPrestamo){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fechaPrestamo);
+        calendar.add(Calendar.DAY_OF_YEAR,30);
+        return calendar.getTime();
+    }
 
     public boolean Activado(){
-       if(fechaPrestamo < fechaDevolucion){
-           System.out.println("esta activado");
-       } else {
-           System.out.println("tiene que devolver el libro");
-       }
-        return false;
+    Date fechaActual= new Date();
+    return fechaActual.after(fechaActual) && fechaActual.before(fechaDevolucion);
     }
 
     @Override
@@ -45,4 +49,50 @@ public class Prestamo {
                 '}';
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Date getFechaDevolucion() {
+        return fechaDevolucion;
+    }
+
+
+
+    public Date getFechaPrestamo() {
+        return fechaPrestamo;
+    }
+
+    public void setFechaPrestamo(Date fechaPrestamo) {
+        this.fechaPrestamo = fechaPrestamo;
+        this.fechaDevolucion = calcularFechaDeDevolucion(fechaPrestamo);
+    }
+
+    public String getEstadoDelPrestamo() {
+        return estadoDelPrestamo;
+    }
+
+    public void setEstadoDelPrestamo(String estadoDelPrestamo) {
+        this.estadoDelPrestamo = estadoDelPrestamo;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Libro getLibro() {
+        return libro;
+    }
+
+    public void setLibro(Libro libro) {
+        this.libro = libro;
+    }
 }

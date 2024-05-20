@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class FileLocalDataSource {
+public class LibroFileLocalDataSource {
 
 
 
-        private String nameFile = "books.txt";
+        private String nameFile = "libros.txt";
 
         private Gson gson = new Gson();
 
