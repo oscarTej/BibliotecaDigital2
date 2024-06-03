@@ -43,7 +43,7 @@ public class PrestamoFileLocalDataSource {
         }
     }
 
-    public Prestamo findById(Prestamo id) {
+    public Prestamo findById(String id) {
         List<Prestamo> models = findAll();
         for (Prestamo model : models) {
             if (Objects.equals(model.id, id)) {
@@ -80,11 +80,24 @@ public class PrestamoFileLocalDataSource {
         List<Prestamo> newList = new ArrayList<>();
         List<Prestamo> models = findAll();
         for (Prestamo model : models) {
-            if (model.id != model.id) {
+            if (!model.id.equals(id))
                 newList.add(model);
-            }
         }
         saveList(newList);
     }
+
+   /* public boolean activo(String id){
+        Prestamo prestamo= findById(id);
+        if (prestamo != null){
+            return prestamo.equals(prestamo.EstadoDelPrestamo());
+
+        } else {
+            System.out.println("no se ha encontrado");
+        }return false;
+
+    }
+
+    */
+
 
 }

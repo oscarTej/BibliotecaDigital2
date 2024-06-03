@@ -15,7 +15,7 @@ public class PrestamoDataRepository implements PrestamoRespository {
     }
 
     @Override
-    public Prestamo getPrestamoId(Prestamo id) {
+    public Prestamo getPrestamoId(String id) {
       return   prestamoFileLocalDataSource.findById(id);
     }
 
@@ -34,4 +34,14 @@ public class PrestamoDataRepository implements PrestamoRespository {
     public List<Prestamo> allPrestamos() {
      return prestamoFileLocalDataSource.findAll();
     }
+
+
+   /* public boolean activo(String id){
+       return prestamoFileLocalDataSource.activo(id);
+    }
+
+
+    */
+
+
 }
