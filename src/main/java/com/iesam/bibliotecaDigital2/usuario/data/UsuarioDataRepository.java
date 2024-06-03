@@ -39,4 +39,9 @@ public class UsuarioDataRepository implements UsuarioRepository {
        usuarioFileLocalDataSource.findById(dni);
         return null;
     }
+
+    @Override
+    public void saveUsuario(Usuario usuario) {
+        usuarioFileLocalDataSource.save(usuario);
+    }
 }

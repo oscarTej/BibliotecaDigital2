@@ -1,9 +1,4 @@
-package com.iesam.bibliotecaDigital2.usuario.data.local;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.iesam.bibliotecaDigital2.usuario.domain.Usuario;
-
+package com.iesam.bibliotecaDigital2.prestamo.data.local;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -13,27 +8,30 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.iesam.bibliotecaDigital2.prestamo.domain.Prestamo;
 
-public class UsuarioFileLocalDataSource {
+public class PrestamoFileLocalDataSource {
 
-    private String nameFile = "usuario.txt";
+    private String nameFile = "Prestamo.txt";
 
     private Gson gson = new Gson();
 
-    private final Type typeList = new TypeToken<ArrayList<Usuario>>() {
+    private final Type typeList = new TypeToken<ArrayList<Prestamo>>() {
     }.getType();
 
-    public void save(Usuario usuario) {
-        List<Usuario> models = findAll();
-        models.add(usuario);
+    public void save(Prestamo prestamo) {
+        List<Prestamo> models = findAll();
+        models.add(prestamo);
         saveToFile(models);
     }
 
-    public void saveList(List<Usuario> models) {
+    public void saveList(List<Prestamo> models) {
         saveToFile(models);
     }
 
-    private void saveToFile(List<Usuario> models) {
+    private void saveToFile(List<Prestamo> models) {
         try {
             FileWriter myWriter = new FileWriter(nameFile);
             myWriter.write(gson.toJson(models));
@@ -45,17 +43,17 @@ public class UsuarioFileLocalDataSource {
         }
     }
 
-    public Usuario findById(String id) {
-        List<Usuario> models = findAll();
-        for (Usuario model : models) {
-            if (Objects.equals(model.dni, id)) {
+    public Prestamo findById(Prestamo id) {
+        List<Prestamo> models = findAll();
+        for (Prestamo model : models) {
+            if (Objects.equals(model.id, id)) {
                 return model;
             }
         }
         return null;
     }
 
-    public List<Usuario> findAll() {
+    public List<Prestamo> findAll() {
         try {
             File myObj = new File(nameFile);
             if (!myObj.exists()) {
@@ -78,29 +76,15 @@ public class UsuarioFileLocalDataSource {
         return new ArrayList<>();
     }
 
-    public void delete(String modelId) {
-        List<Usuario> newList = new ArrayList<>();
-        List<Usuario> models = findAll();
-        for (Usuario model : models) {
-            if (!model.dni.equals(modelId)) {
-
+    public void delete(String id) {
+        List<Prestamo> newList = new ArrayList<>();
+        List<Prestamo> models = findAll();
+        for (Prestamo model : models) {
+            if (model.id != model.id) {
                 newList.add(model);
             }
         }
         saveList(newList);
-    }
-
-    public void updateUser(Usuario updatedUser) {
-        // Obtén todos los usuarios
-        List<Usuario> Usuarios = findAll();
-
-        // Busca el usuario que deseas actualizar y reemplázalo
-        for (int i = 0; i < Usuarios.size(); i++) {
-            if (Usuarios.get(i).dni.equals(updatedUser.dni)) {
-                Usuarios.set(i, updatedUser);
-                break;
-            }
-        }
     }
 
 }

@@ -10,4 +10,6 @@ public interface UsuarioRepository {
     List<Usuario> obtainUsuarios();
 
     Usuario updateUsuario(String dni);
+
+    void saveUsuario(Usuario usuario);
 }
