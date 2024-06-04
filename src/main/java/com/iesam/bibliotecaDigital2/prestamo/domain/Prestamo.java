@@ -8,91 +8,63 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
+
 public class Prestamo {
     public String id;
     public Date fechaDevolucion;
     public Date fechaPrestamo;
-    public String estadoDelPrestamo;
+    public boolean estadoDelPrestamo;
 
     public Usuario usuario;
     public Libro libro;
 
-    public Prestamo(String id, Date fechaDevolucion, Date fechaPrestamo, String estadoDelPrestamo, Usuario usuario, Libro libro) {
+    //constructor para crear el prestamo
+    public Prestamo(String id, Usuario usuario, Libro libro) {
         this.id = id;
-        this.fechaDevolucion =calcularFechaDeDevolucion(fechaPrestamo);
-        this.fechaPrestamo = fechaPrestamo;
-        this.estadoDelPrestamo = estadoDelPrestamo;
+        this.fechaPrestamo =new Date();
+        this.fechaDevolucion = calcularFechaDevolucion(this.fechaPrestamo);
+        this.estadoDelPrestamo = true;
         this.usuario = usuario;
         this.libro = libro;
     }
-    private Date calcularFechaDeDevolucion(Date fechaPrestamo){
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(fechaPrestamo);
-        calendar.add(Calendar.DAY_OF_YEAR,30);
-        return calendar.getTime();
+// constructor prestamo ya creado por id
+   public Prestamo(String id, Date fechaDevolucion, Date fechaPrestamo,  Usuario usuario, Libro libro) {
+        this.id = id;
+        this.fechaDevolucion = fechaDevolucion;
+        this.fechaPrestamo = fechaPrestamo;
+        this.estadoDelPrestamo =calcularEstadoDelPrestamo() ;
+        this.usuario = usuario;
+        this.libro = libro;
     }
 
-    public boolean Activado(){
-    Date fechaActual= new Date();
-    return fechaActual.after(fechaActual) && fechaActual.before(fechaDevolucion);
-    }
+
+
 
     @Override
     public String toString() {
         return "Prestamo{" +
                 "id='" + id + '\'' +
-                ", FechaDevolucion='" + fechaDevolucion + '\'' +
-                ", FechaPrestamo='" + fechaPrestamo + '\'' +
-                ", EstadoDelPrestamo='" + estadoDelPrestamo + '\'' +
+                ", fechaDevolucion='" + fechaDevolucion + '\'' +
+                ", fechaPrestamo='" + fechaPrestamo + '\'' +
                 ", usuario=" + usuario +
                 ", libro=" + libro +
                 '}';
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Date getFechaDevolucion() {
-        return fechaDevolucion;
+    private boolean calcularEstadoDelPrestamo() {
+        return (fechaPrestamo.before(fechaDevolucion));
     }
 
 
-
-    public Date getFechaPrestamo() {
-        return fechaPrestamo;
-    }
-
-    public void setFechaPrestamo(Date fechaPrestamo) {
-        this.fechaPrestamo = fechaPrestamo;
-        this.fechaDevolucion = calcularFechaDeDevolucion(fechaPrestamo);
-    }
-
-    public String getEstadoDelPrestamo() {
-        return estadoDelPrestamo;
-    }
-
-    public void setEstadoDelPrestamo(String estadoDelPrestamo) {
-        this.estadoDelPrestamo = estadoDelPrestamo;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Libro getLibro() {
-        return libro;
-    }
-
-    public void setLibro(Libro libro) {
-        this.libro = libro;
+    private Date calcularFechaDevolucion(Date fechaPrestamo) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fechaPrestamo);
+        calendar.add(Calendar.DAY_OF_YEAR, 25);
+        return calendar.getTime();
     }
 }
+
+
+
+
+

@@ -2,7 +2,7 @@ package com.iesam.bibliotecaDigital2.libro.domain;
 
 public class Libro {
 
-    public String id;
+    public  String id;
     public String titulo;
     public String genero;
     public String autor;

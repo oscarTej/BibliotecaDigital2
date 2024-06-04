@@ -80,7 +80,7 @@ public class LibroFileLocalDataSource {
             return new ArrayList<>();
         }
 
-        public void delete(String modelId) {
+        public void delete(String id) {
             List<Libro> newList = new ArrayList<>();
             List<Libro> models = findAll();
             for (Libro model : models) {

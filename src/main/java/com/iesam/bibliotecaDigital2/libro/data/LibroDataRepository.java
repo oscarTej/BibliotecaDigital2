@@ -8,7 +8,7 @@ import java.util.List;
 
 public class LibroDataRepository implements LibroRepository {
 
-     private LibroFileLocalDataSource libroFileLocalDataSource;
+     private final LibroFileLocalDataSource libroFileLocalDataSource;
 
     public LibroDataRepository(LibroFileLocalDataSource libroFileLocalDataSource) {
         this.libroFileLocalDataSource = libroFileLocalDataSource;
