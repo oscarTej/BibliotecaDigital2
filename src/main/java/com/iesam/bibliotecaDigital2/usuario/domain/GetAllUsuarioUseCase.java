@@ -4,7 +4,7 @@ import java.util.List;
 
 public class GetAllUsuarioUseCase {
 
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
     public GetAllUsuarioUseCase(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
