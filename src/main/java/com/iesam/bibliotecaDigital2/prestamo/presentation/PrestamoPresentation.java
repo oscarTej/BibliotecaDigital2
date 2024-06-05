@@ -2,10 +2,8 @@ package com.iesam.bibliotecaDigital2.prestamo.presentation;
 
 import com.iesam.bibliotecaDigital2.libro.data.LibroDataRepository;
 import com.iesam.bibliotecaDigital2.libro.data.Local.LibroFileLocalDataSource;
-import com.iesam.bibliotecaDigital2.libro.domain.DeleteLibroUseCase;
 import com.iesam.bibliotecaDigital2.libro.domain.GetLibroUseCase;
 import com.iesam.bibliotecaDigital2.libro.domain.Libro;
-import com.iesam.bibliotecaDigital2.libro.presentation.LibroPresentation;
 import com.iesam.bibliotecaDigital2.prestamo.data.PrestamoDataRepository;
 import com.iesam.bibliotecaDigital2.prestamo.data.local.PrestamoFileLocalDataSource;
 import com.iesam.bibliotecaDigital2.prestamo.domain.*;
@@ -13,9 +11,7 @@ import com.iesam.bibliotecaDigital2.usuario.data.UsuarioDataRepository;
 import com.iesam.bibliotecaDigital2.usuario.data.local.UsuarioFileLocalDataSource;
 import com.iesam.bibliotecaDigital2.usuario.domain.GetUsuarioUseCase;
 import com.iesam.bibliotecaDigital2.usuario.domain.Usuario;
-import com.iesam.bibliotecaDigital2.usuario.presentation.UsuarioPresentation;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class PrestamoPresentation {
@@ -58,6 +54,12 @@ public class PrestamoPresentation {
                 case 5:
                     System.out.println("vamos a ver el estado de el prestamo");
                     prestamoActivo();
+                    break;
+
+
+                case 6:
+                    System.out.println("vamos a ver el estado de el prestamo");
+                    prestamosFinalizados();
                     break;
                 default:
                     System.out.println("opcion no valida");
@@ -132,6 +134,18 @@ public class PrestamoPresentation {
         }
 
 
-
     }
+    public static List<Prestamo> prestamosFinalizados(){
+        System.out.println("vamos a ver sus prestamos finalizados");
+        System.out.println("-------------introduce sus datos------------------");
+        System.out.println("indiqueme su dni");
+        String dni = input.next();
+        GetFinishedPrestamoUseCase getFinishedPrestamoUseCase = new GetFinishedPrestamoUseCase(
+                new PrestamoDataRepository(new PrestamoFileLocalDataSource()));
+        List<Prestamo> prestamosFinalizados = getFinishedPrestamoUseCase.execute();
+        for (Prestamo prestamo : prestamosFinalizados){
+            System.out.println(prestamo);
+        }return prestamosFinalizados;
+    }
+
 }
