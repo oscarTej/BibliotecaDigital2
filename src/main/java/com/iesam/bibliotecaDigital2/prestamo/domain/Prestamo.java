@@ -52,7 +52,7 @@ public class Prestamo {
     }
 
     private boolean calcularEstadoDelPrestamo() {
-        return (fechaPrestamo.before(fechaDevolucion));
+        return  (fechaPrestamo.before(fechaDevolucion) );
     }
 
 
