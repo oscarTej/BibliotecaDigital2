@@ -23,7 +23,7 @@ public class Prestamo {
         this.id = id;
         this.fechaPrestamo =new Date();
         this.fechaDevolucion = calcularFechaDevolucion(this.fechaPrestamo);
-        this.estadoDelPrestamo = true;
+        this.estadoDelPrestamo = calcularEstadoDelPrestamo() ;
         this.usuario = usuario;
         this.libro = libro;
     }
@@ -59,7 +59,7 @@ public class Prestamo {
     private Date calcularFechaDevolucion(Date fechaPrestamo) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(fechaPrestamo);
-        calendar.add(Calendar.DAY_OF_YEAR, 25);
+        calendar.add(Calendar.DAY_OF_YEAR, 27);
         return calendar.getTime();
     }
 }
